@@ -12,7 +12,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import cn.knife037.util.DbUtil;
 
@@ -41,16 +40,9 @@ public class AddNovelServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		
-		HttpSession session = request.getSession();
-		String username = (String)session.getAttribute("username");
-		int id = (int)session.getAttribute("id");
-		if(username == null) {
-			response.sendRedirect("login");
-			return ;
-		}
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
+	
+		int id = (int)request.getSession().getAttribute("id");
 		
 		String novelName = request.getParameter("name");
 		String novelUrl = request.getParameter("url");

@@ -13,7 +13,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import cn.knife037.bean.NovelBean;
 
@@ -42,17 +41,7 @@ public class AddSubscriptionServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		request.setCharacterEncoding("utf-8");
-		
-		HttpSession session = request.getSession();
-		String username = (String)session.getAttribute("username");
-		if(username == null) {
-			response.sendRedirect("login");
-			return ;
-		}
-		
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		String keyWord = request.getParameter("keyword");
 		
 		if(keyWord == null) {
@@ -63,25 +52,27 @@ public class AddSubscriptionServlet extends HttpServlet {
 		
 		java.util.regex.Pattern pattern = java.util.regex.Pattern.compile("<a cpos=\"title\" href=\"(.+?)>");
 		java.util.regex.Pattern pattern2 = java.util.regex.Pattern.compile("href=\"(.+?)\" title=\"(.+?)\"");
-		String url = "http://zhannei.baidu.com/cse/search?s=8353527289636145615&entry=1&ie=utf-8&q=" + keyWord;
+		String url = "http://zhannei.baidu.com/cse/search?s=8353527289636145615&entry=1&ie=gbk&q=" + keyWord;
 		String SearchHtml = getSourceCode(url, false, "utf-8");
+		while(SearchHtml == null) {
+			SearchHtml = getSourceCode(url, false, "utf-8");
+			System.out.println("Fail to get Novel HTML Content!Try again!");
+		}
+		
 		LinkedList<NovelBean> novels = new LinkedList<NovelBean>();
-		if(SearchHtml != null) {
-			Matcher mc = pattern.matcher(SearchHtml);
-			Matcher mc2 = null;
-			while(mc.find()) {
-				mc2 = pattern2.matcher(mc.group(0));
-				
-				if(mc2.find()) {
-					NovelBean novel = new NovelBean(0, mc2.group(2), null);
-					novel.setUrl(mc2.group(1));
-					novels.add(novel);					
-				} else {
-					System.out.println("no match found");
-				}
+		
+		Matcher mc = pattern.matcher(SearchHtml);
+		Matcher mc2 = null;
+		while(mc.find()) {
+			mc2 = pattern2.matcher(mc.group(0));
+			
+			if(mc2.find()) {
+				NovelBean novel = new NovelBean(0, mc2.group(2), null);
+				novel.setUrl(mc2.group(1));
+				novels.add(novel);					
+			} else {
+				System.out.println("no match found");
 			}
-		} else {
-			System.out.println("SearchHtml is null!!!");
 		}
 		
 		request.setAttribute("novels", novels);
@@ -114,7 +105,7 @@ public class AddSubscriptionServlet extends HttpServlet {
 			}
 			
 		} catch (IOException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 			return null;
 		} finally {
 			try {

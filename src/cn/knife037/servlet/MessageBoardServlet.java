@@ -8,7 +8,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class MessageBoardServlet
@@ -36,15 +35,6 @@ public class MessageBoardServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		
-		HttpSession session = request.getSession();
-		String username = (String)session.getAttribute("username");
-		if(username == null) {
-			response.sendRedirect("login");
-			return ;
-		}
-		
 		RequestDispatcher view = request.getRequestDispatcher("WEB-INF/messageBoard.jsp");
 		view.forward(request, response);
 		return ;

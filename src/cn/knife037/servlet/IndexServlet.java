@@ -8,7 +8,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class IndexServlet
@@ -36,15 +35,8 @@ public class IndexServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		String username = (String)session.getAttribute("username");
-		if(username != null) {
-			RequestDispatcher view = request.getRequestDispatcher("WEB-INF/index.jsp");
-			view.forward(request, response);
-			return ;
-		} else {
-			response.sendRedirect("login");
-		}
+		RequestDispatcher view = request.getRequestDispatcher("WEB-INF/index.jsp");
+		view.forward(request, response);
 	}
 
 }

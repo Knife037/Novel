@@ -44,7 +44,6 @@ public class LoginServlet extends HttpServlet {
 		String name = request.getParameter("username");
 		String pwd = request.getParameter("password");
 		
-		// 测试""能否正确比较
 		if(name == null || name == "" || pwd == null || pwd == "") {
 			RequestDispatcher view = request.getRequestDispatcher("WEB-INF/login.html");
 			view.forward(request, response);

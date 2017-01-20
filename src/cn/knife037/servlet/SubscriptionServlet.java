@@ -13,7 +13,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import cn.knife037.bean.NovelBean;
 import cn.knife037.util.DbUtil;
@@ -44,12 +43,7 @@ public class SubscriptionServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		String username = (String)session.getAttribute("username");
-		if(username == null) {
-			response.sendRedirect("login");
-			return ;
-		}
+		String username = (String)request.getSession().getAttribute("username");
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
