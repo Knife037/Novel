@@ -1,9 +1,7 @@
 package cn.knife037.filter;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
 import javax.servlet.Filter;
@@ -48,7 +46,7 @@ public class GZipFilter implements Filter {
 		HttpServletResponse response = (HttpServletResponse) resp;
 		
 		GZipResponse gzipResponse = new GZipResponse(response);
-		
+		System.out.println("GZipFilter " + request.getContentLength());
 		chain.doFilter(request, gzipResponse);
 		
 		byte[] bytes = gzipResponse.getBytes();
