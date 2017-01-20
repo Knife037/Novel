@@ -4,9 +4,12 @@
 <meta charset="utf-8">
 <link href="dist/css/bootstrap.min.css" rel="stylesheet">
 <style>
+	body{
+		background:url(image/back.jpg);
+	}
 	.login{
-		margin-top:5%;
-		margin-left:40%;
+		margin-top:20%;
+		margin-left:60%;
 		width:20%;
 	}
 </style>
@@ -41,6 +44,9 @@
 			var password = $("txtPassword");
 			$("form").eq(0).submit();
 		});
+		$("#btn-register").click(function() {
+			window.location.href = "/Novel/register";
+		})
 	});
 </script>
 </html>

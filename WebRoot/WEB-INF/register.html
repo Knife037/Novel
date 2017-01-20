@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+	.body{
+		margin-top:1%;
+		margin-left:40%;
+		margin-right:40%;
+	}
+</style>
+</head>
+<body>
+<div class="body">
+	<form id="form" method="get">
+		<label for="">用户名</label>
+		<div class="form-group">			
+			<input id="txtUsername" name="username" type="text" class="form-control" placeholder="请输入用户名"/>
+		</div>
+		<label for="">昵称</label>
+		<div class="form-group">			
+			<input name="nickname" type="text" class="form-control" placeholder="请输入昵称"/>
+		</div>
+		<label for="">邮箱</label>
+		<div class="form-group">			
+			<input id="txtEmail" name="email" type="text" class="form-control" placeholder="请输入用户名"/>
+		</div>
+		<label for="">密码</label>
+		<div class="form-group">
+			<input id="txtPassword" name="password" type="password" class="form-control" placeholder="请输入密码" value=""/>
+		</div>
+		<label for="">请重复密码</label>
+		<div class="form-group">
+			<input id="txtRepeatPassword" name="repeatPassword" type="password" class="form-control" placeholder="请输入密码"  value=""/>
+		</div>
+		<div class="form-group">
+			<button id="btn-register" type="button" class="btn btn-primary form-control">注册</button>
+		</div>
+	</form>
+</div>
+<div class="body">
+	
+</div>
+</body>
+<script src="dist/js/jquery.min.js"></script>
+<script src="dist/js/bootstrap.min.js"></script>
+<script>
+	$(document).ready(function () {
+		$("#btn-register").click(function() {
+			var password = $("#txtPassword");
+			var repeatPassword = $("#txtRepeatPassword");
+			var email = $("#txtEmail");
+			if (!(email.val().search(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/) != -1)) {
+				alert("邮箱格式错误");
+				email.val("");
+				return ;
+			}	
+			
+			if(!(password.val() == repeatPassword.val())) {
+				alert("两次密码不一致");
+				password.val("");
+				repeatPassword.val("");			
+				return ;
+			}
+			$("#form").submit();
+		});
+	});
+</script>
+</html>
