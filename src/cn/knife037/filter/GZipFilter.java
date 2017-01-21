@@ -46,7 +46,6 @@ public class GZipFilter implements Filter {
 		HttpServletResponse response = (HttpServletResponse) resp;
 		
 		GZipResponse gzipResponse = new GZipResponse(response);
-		System.out.println("GZipFilter " + request.getContentLength());
 		chain.doFilter(request, gzipResponse);
 		
 		byte[] bytes = gzipResponse.getBytes();
@@ -56,8 +55,8 @@ public class GZipFilter implements Filter {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		GZIPOutputStream gos = new GZIPOutputStream(baos);
 		gos.write(bytes);
-		gos.finish();
 		gos.flush();
+		gos.finish();		
 		gos.close();
 		bytes = baos.toByteArray();
 		
@@ -67,6 +66,7 @@ public class GZipFilter implements Filter {
 		ServletOutputStream sos = response.getOutputStream();
 		sos.write(bytes);
 		sos.flush();
+		
 	}
 
 	/**

@@ -37,9 +37,10 @@ public class EncodingFilter implements Filter {
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
-		System.out.println("EncodingFilter " + httpRequest.getContextPath());
+		HttpServletResponse httpResponse = (HttpServletResponse) response;
+		httpResponse.setCharacterEncoding("utf-8");
 		httpRequest.setCharacterEncoding("utf-8");
-		chain.doFilter(request, response);
+		chain.doFilter(httpRequest, httpResponse);
 	}
 
 	/**

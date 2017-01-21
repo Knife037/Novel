@@ -2,9 +2,9 @@ package cn.knife037.filter.entity;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletResponseWrapper;
 
@@ -28,7 +28,7 @@ public class GZipResponse extends HttpServletResponseWrapper {
 	@Override
 	public PrintWriter getWriter() throws IOException {
 		if(pw == null) {
-			pw = new PrintWriter(baos);
+			pw = new PrintWriter(new OutputStreamWriter(baos, "utf-8"));
 		}
 		return pw;
 	}

@@ -48,7 +48,6 @@ public class VerifyFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
-		System.out.println("VerifyFilter " + httpRequest.getContextPath());
 		
 		HttpSession session = httpRequest.getSession();
 		String username = (String) session.getAttribute("username");
@@ -57,7 +56,7 @@ public class VerifyFilter implements Filter {
 			httpResponse.sendRedirect("login");
 			return ;
 		}
-		chain.doFilter(request, response);
+		chain.doFilter(httpRequest, httpResponse);
 	}
 
 	/**
