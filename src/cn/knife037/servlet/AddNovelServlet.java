@@ -54,6 +54,8 @@ public class AddNovelServlet extends HttpServlet {
 		ResultSet rs = null;
 		try {
 			
+			
+			System.out.println(novelName);
 			conn = DbUtil.getConn();
 			sql = "select * from novels where novlName=?";
 			pstmt = DbUtil.preparedStatement(conn, sql);
@@ -63,9 +65,8 @@ public class AddNovelServlet extends HttpServlet {
 			DbUtil.close(rs);
 			DbUtil.close(pstmt);
 			
-			if(rs != null) {
+			if(rs.next()) {
 				
-				rs.next();
 				novelID = rs.getInt("id");
 				
 			} else {				

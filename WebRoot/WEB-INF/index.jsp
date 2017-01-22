@@ -38,10 +38,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <li><h4>人多的时候可能邮件通知会迟到。估计1000人以内的话，撑死了迟到10分钟，不要担心这个问题。</h4>
 </li>
 <li><h4>本网站纯粹是为了练手&实用。。。前端使用Bootstrap，后端使用Servlet MVC（应该有这种东西吧，类似于Struts。。）。<br/>
-网站的原理相当简单，就是从<a href="http://www.biquge.com.tw/"><code>http://www.biquge.com.tw/</code></a>网站上获取信息，然后以邮件的形式发送给大家。<br/>
-也就是说会有一些小说找不到的。。这就比较尴尬了</h4>
+网站的原理相当简单，就是从<a href="http://www.biquge.com.tw/" target="_blank"><code>http://www.biquge.com.tw/</code></a>网站上获取信息，然后以邮件的形式发送给大家。<br/>
+也就是说会有一些小说找不到的。。这就比较尴尬了。</h4>
 </li>
-<li><h4>欢迎访问个人笔记网站，<a href="http://www.knife037.cn/Diary/login"><code>http://www.knife037.cn/Diary/login</code></a>。完全封闭，笔记内容不会被外界访问到。部分支持Markdown格式。对Markdown格式的有些内容支持不是很好，例如表格了。。。。（什么，你不知道Markdown。。。百度一下，这是记笔记的神格式）</h4>
+<li><h4>源码已上传到Github：<a href="https://github.com/Knife037/Novel" target="_blank"><code>https://github.com/Knife037/Novel</code></a>有兴趣的可以看一下。。</h4>
+</li>
+<li><h4>欢迎访问个人笔记网站，<a href="http://www.knife037.cn/Diary/login" target="_blank"><code>http://www.knife037.cn/Diary/login</code></a>。完全封闭，笔记内容不会被外界访问到。部分支持Markdown格式。对Markdown格式的有些内容支持不是很好，例如表格了。。。。（什么，你不知道Markdown。。。百度一下，这是记笔记的神格式）</h4>
 </li>
 <li><h4>欢迎提意见，可在留言板处留言</h4>
 </li>

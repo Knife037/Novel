@@ -50,9 +50,11 @@ public class AddSubscriptionServlet extends HttpServlet {
 			return ;
 		}
 		
+		System.out.println(keyWord);
+		
 		java.util.regex.Pattern pattern = java.util.regex.Pattern.compile("<a cpos=\"title\" href=\"(.+?)>");
 		java.util.regex.Pattern pattern2 = java.util.regex.Pattern.compile("href=\"(.+?)\" title=\"(.+?)\"");
-		String url = "http://zhannei.baidu.com/cse/search?s=8353527289636145615&entry=1&ie=gbk&q=" + keyWord;
+		String url = "http://zhannei.baidu.com/cse/search?s=8353527289636145615&entry=1&ie=utf-8&q=" + keyWord;
 		String SearchHtml = getSourceCode(url, false, "utf-8");
 		while(SearchHtml == null) {
 			SearchHtml = getSourceCode(url, false, "utf-8");
