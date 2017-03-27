@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<link href="dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+	body{
+		background:url(image/back.jpg);
+	}
+	.login{
+		margin-top:20%;
+		margin-left:60%;
+		width:20%;
+	}
+</style>
+</head>
+<body>
+<div class="login container">
+	<form method="post">
+		<label for="">用户名</label>
+		<div class="form-group">			
+			<input id="txtUsername" name="username" type="text" class="form-control" placeholder="请输入用户名"/>
+		</div>
+		<label for="">密码</label>
+		<div class="form-group">
+			<input id="txtPassword" name="password" type="password" class="form-control" placeholder="请输入密码"/>
+		</div>
+		<div class="form-group">
+			<button id="btn-login" type="button" class="btn btn-primary form-control">登录</button>
+		</div>
+		<div class="form-group">
+			<button id="btn-register" type="button" class="btn btn-primary form-control">注册</button>
+		</div>
+	</form>
+</div>
+	
+</body>
+<script src="dist/js/jquery.min.js"></script>
+<script src="dist/js/bootstrap.min.js"></script>
+<script>
+	$(document).ready(function() {
+		$("#btn-login").click(function() {
+			var username = $("#txtUsername");
+			var password = $("txtPassword");
+			$("form").eq(0).submit();
+		});
+		$("#btn-register").click(function() {
+			window.location.href = "/Novel/register";
+		})
+	});
+</script>
+</html>
