@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.kitrst.NUNWeb.mapper.NovelMapper">
+
+    <select id="getNovelByUsername" parameterType="java.lang.String" resultType="cn.kitrst.NUNWeb.domain.Novel">
+        select * from novels where novelid in (select novelid from mapping where userid = (select userid from users where username = #{username}))
+    </select>
+
+    <insert id="addNovel" parameterType="cn.kitrst.NUNWeb.domain.Novel" useGeneratedKeys="true">
+        insert into novels(novelid, novelName, currChap, rectChap, url, encoding) values(UUID(), #{novelName}, #{currChap}, #{rectChap}, #{url}, #{encoding})
+    </insert>
+
+    <select id="getNovelByNovelName" parameterType="java.lang.String" resultType="cn.kitrst.NUNWeb.domain.Novel">
+        select * from novels where novelName = #{novelName}
+    </select>
+
+</mapper>

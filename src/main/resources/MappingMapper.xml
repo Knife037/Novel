@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.kitrst.NUNWeb.mapper.MappingMapper">
+
+    <insert id="addMapping" parameterType="cn.kitrst.NUNWeb.domain.Mapping" useGeneratedKeys="true">
+        insert into mapping(id, userid, novelid) select UUID(), users.userid, novels.novelid from users, novels where (users.username = #{username} and novels.novelName = #{novelName})
+    </insert>
+
+    <delete id="deleteMapping" parameterType="cn.kitrst.NUNWeb.domain.Mapping">
+        delete from mapping where (novelid = (select novelid from novels where novelName = #{novelName}) and userid = (select userid from users where username = #{username}))
+    </delete>
+
+</mapper>

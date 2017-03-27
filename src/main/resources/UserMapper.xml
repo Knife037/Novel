@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.kitrst.NUNWeb.mapper.UserMapper">
+
+    <insert id="addUser" parameterType="cn.kitrst.NUNWeb.domain.User" useGeneratedKeys="true">
+        insert into users(userid, username, password, nickname, email)
+        values(UUID() , #{username} , #{password} , #{nickname} , #{email})
+    </insert>
+
+    <select id="getUserByUsername" parameterType="java.lang.String" resultType="cn.kitrst.NUNWeb.domain.User">
+        select * from users where username = #{username}
+    </select>
+
+    <select id="getUserByNovelName" parameterType="java.lang.String" resultType="cn.kitrst.NUNWeb.domain.User">
+        select * from users where userid in (select userid from mapping where novelid = (select novelid from novels where novelname = #{novelName}));
+    </select>
+
+    <update id="updateUser" parameterType="cn.kitrst.NUNWeb.domain.User">
+        update users set nickname = #{nickname}, password = #{password}, email = #{email}
+    </update>
+
+</mapper>
